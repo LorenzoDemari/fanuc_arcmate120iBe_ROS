@@ -80,4 +80,4 @@ Now you can move the manipulator; to do it you have 2 options:
 		- looking below, you can see an example of a message published on the "/joint_trajectory_action/goal" in order to move just the 5th joint
 
 # MESSAGE EXAMPLE:
-![Prova](link-to-image)
+![Prova](https://github.com/LorenzoDemari/fanuc_arcmate120iBe_ROS/blob/developing/message.png)
