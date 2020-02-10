@@ -56,7 +56,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/lorenzo/FANUC/src/fanuc_command/venv"
+set -gx VIRTUAL_ENV "/home/lorenzo/FANUC/src/fanuc_arcmate120iBe_ROS/fanuc_command/venv"
 
 # https://github.com/fish-shell/fish-shell/issues/436 altered PATH handling
 if test (echo $FISH_VERSION | tr "." "\n")[1] -lt 3
