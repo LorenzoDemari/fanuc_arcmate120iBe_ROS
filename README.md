@@ -2,7 +2,7 @@
 This repository contains all the files and the instructions to integrate the FANUC ARC Mate 120iBe provided with the R-J3iB Mate controller (2003) within ROS.
 In this readme, you will find all the instructions to configure the controller and the PC (software to be installed and configuration to be done) and to make the manipulator move through ROS.
 
-# CONFIGURATION
+# Configuration
 
 On the Teach Pendant (robot console):
 
@@ -37,7 +37,7 @@ On a computer with Ubuntu and ROS
 		- moveit
 		- fanuc_arcmate120iBe_support
 
-# UTILIZATION
+# Utilization
 
 On the Teach Pendant (robot console):
 
@@ -79,5 +79,5 @@ Now you can move the manipulator; to do it you have 2 options:
 			B - the desired configuration to be reached by the manipulator
 		- looking below, you can see an example of a message published on the "/joint_trajectory_action/goal" in order to move just the 5th joint
 
-# MESSAGE EXAMPLE:
+# Message Example:
 ![Prova](https://github.com/LorenzoDemari/fanuc_arcmate120iBe_ROS/blob/developing/message.png)
