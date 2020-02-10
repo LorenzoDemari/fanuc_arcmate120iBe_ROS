@@ -26,9 +26,11 @@ On the Teach Pendant (robot console):
 		- CALIBRATE
 
 On a computer with Ubuntu and ROS
+
 	- TCP/IP configuration
 		- Set a static IP
 		- Give the same Subnet Mask given to the robot
+		
 	- ROS packages
 		- ros_industrial/fanuc_driver
 		- ros_industrial
