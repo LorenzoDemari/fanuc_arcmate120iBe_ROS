@@ -18,7 +18,7 @@ def state_callback(state_msg):
     global actual_config
     global flag
     actual_config = state_msg.position
-    rospy.loginfo(actual_config)
+    # rospy.loginfo(actual_config)
     flag = True
 
 def command():
@@ -39,7 +39,7 @@ def command():
         # rate = rospy.Rate(10) # 10hz
         # while not rospy.is_shutdown():
 
-        # Starting start_config initialization based on the joint state stored by state_callback
+        # Starting configuration initialization based on the joint state stored by state_callback
         start_config = JointTrajectoryPoint()
         # start_config.positions = [-0.24934397637844086, 1.1815193891525269, -0.9878455400466919, 0.0027158225420862436, 0.7455053925514221, -0.7225106954574585]
         start_config.positions = actual_config
@@ -48,10 +48,11 @@ def command():
         start_config.time_from_start.secs = 0
         start_config.time_from_start.nsecs = 0
 
+        # Goal configuration initialization
         goal_config = JointTrajectoryPoint()
         # goal_config.positions = [-0.24934397637844086, 1.1815193891525269, -0.9878455400466919, 0.0027158225420862436, 0.5455053925514221, -0.7225106954574585]
         goal_config_array = np.asarray(actual_config)
-        goal_config_array[4] = goal_config_array[4] + 0.4
+        goal_config_array[4] = goal_config_array[4] + 0.5
         goal_config.positions = goal_config_array
         # goal_config.velocities = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         # goal_config.accelerations = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
