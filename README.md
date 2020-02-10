@@ -16,7 +16,7 @@ On the Teach Pendant (robot console):
 
 	- Software installation
 		- Configure FTP Server
-		- Transfer all the file contained in the "binaries" folder to the "md:" directory of the controller
+		- Transfer all the file in the "binaries" folder to the "md:" directory of the controller
 		- Reboot the controller
 
 	- Calibration
