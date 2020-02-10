@@ -36,3 +36,93 @@ On a computer with Ubuntu and ROS
 		- ros_industrial
 		- moveit
 		- fanuc_arcmate120iBe_support
+
+# UTILIZATION
+
+On the Teach Pendant (robot console):
+
+	- SELECT > F1 > TP Programs > ROS: now the code of ROS.TP will be opened
+	- Press SELECT again
+	- Press and keep always pressed the "Deadman switch"
+	- Press RESET and wait untile the light FAULT switches off
+	- Press and keep always pressed SHIFT
+	- Press FWD once
+	- On the Teach Pendant you should see the following messages:
+		- RREL Waiting for ROS traj relay
+		- RSTA Waiting for ROS state prox
+
+On a terminal in Ubuntu:
+
+	- cd $FANUC_WS
+	- source devel/setup.bash
+	- roslaunch fanuc_$ROBOTMODEL_moveit_config moveit_planning_execution.launch sim:=false robot_ip:=192.168.1.4
+	- RViz should open with a visualization of the robot updated with the real state of the robot
+
+On the Teach Pendant (robot console):
+
+	- You should see the following messages:
+		- RREL Connected
+		- RSTA Connected
+
+Now you can move the manipulator; to do it you have 2 options:
+
+	1 - MoveIt!: 
+		- move the the simulated arm in RViz from the starting position to the desired position
+		- in the Planning tab, click Plan and then Plan&Execute
+		- the real robot and the simulated one should reach the desired position
+
+	2 - Publish to a topic:
+		- the topic is "/joint_trajectory_action/goal"
+		- the type of message is "control_msgs/FollowJointTrajectoryActionGoal"
+		- in the message you must initialize at least 2 configurations:
+			A - the actual configuration (joint states) of the robot (you can see it subscribing to the "/joint_states" topic)
+			B - the desired configuration to be reached by the manipulator
+		- looking below, you can see an example of a message published on the "/joint_trajectory_action/goal" in order to move just the 5th joint
+
+-----------------------------------------------------------------------------------------------------------------------------
+MESSAGE EXAMPLE:
+
+rostopic echo /joint_trajectory_action/goal 
+header: 
+  seq: 1
+  stamp: 
+    secs: 0
+    nsecs:         0
+  frame_id: ''
+goal_id: 
+  stamp: 
+    secs: 0
+    nsecs:         0
+  id: ''
+goal: 
+  trajectory: 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 0
+        nsecs:         0
+      frame_id: "base_link"
+    joint_names: [joint_1, joint_2, joint_3, joint_4, joint_5, joint_6]
+    points: 
+      - 
+        positions: [-0.22744455933570862, 1.1735680103302002, -0.9722328186035156, 0.0054884240962564945, 0.5216567516326904, -0.7469443082809448]
+        velocities: []
+        accelerations: []
+        effort: []
+        time_from_start: 
+          secs: 0
+          nsecs:         0
+      - 
+        positions: [-0.22744455933570862, 1.1735680103302002, -0.9722328186035156, 0.0054884240962564945, 0.9216567516326905, -0.7469443082809448]
+        velocities: []
+        accelerations: []
+        effort: []
+        time_from_start: 
+          secs: 1
+          nsecs:  63310604
+  path_tolerance: []
+  goal_tolerance: []
+  goal_time_tolerance: 
+    secs: 0
+    nsecs:         0
+-----------------------------------------------------------------------------------------------------------------------------
