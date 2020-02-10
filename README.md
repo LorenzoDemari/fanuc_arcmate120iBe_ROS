@@ -5,6 +5,7 @@ In this readme, you will find all the instructions to configure the controller a
 # CONFIGURATION
 
 On the Teach Pendant (robot console):
+
 	- TCP/IP configuration
 		- MENUS > SETUP > F1 > Next > Host Comm > TCP/IP
 		- Give a name to the node (Node Name)
