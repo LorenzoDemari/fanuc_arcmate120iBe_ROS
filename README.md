@@ -79,9 +79,9 @@ Now you can move the manipulator; to do it you have 2 options:
 			B - the desired configuration to be reached by the manipulator
 		- looking below, you can see an example of a message published on the "/joint_trajectory_action/goal" in order to move just the 5th joint
 
-MESSAGE EXAMPLE:
+# MESSAGE EXAMPLE:
 
-rostopic echo /joint_trajectory_action/goal 
+rostopic echo /joint_trajectory_action/goal
 header: 
   seq: 1
   stamp: 
