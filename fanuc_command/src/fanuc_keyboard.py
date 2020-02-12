@@ -10,6 +10,16 @@ from trajectory_msgs.msg import JointTrajectoryPoint
 from control_msgs.msg import FollowJointTrajectoryActionGoal, FollowJointTrajectoryAction
 from sensor_msgs.msg import JointState
 
+instructions = """
+
+'a' JOINT_1 'd'
+'w' JOINT_2 's'
+'i' JOINT_3 'k'
+'j' JOINT_4 'l'
+'8' JOINT_5 '5'
+'4' JOINT_6 '6'
+
+"""
 moveBindings = {
         'a': (0.1, 0.0, 0.0, 0.0, 0.0, 0.0),
         'd': (-0.1, 0.0, 0.0, 0.0, 0.0, 0.0),
@@ -28,15 +38,18 @@ moveBindings = {
 
 def state_callback(state_msg):
     global actual_config
+    global state
     global flag
     actual_config = state_msg.position
     # rospy.loginfo(actual_config)
-    flag = True
+    state = True
 
 
 def keyboard():
+    global state
     global flag
     global actual_config
+    state = False
     flag = False
 
     fd = sys.stdin.fileno()
@@ -57,12 +70,15 @@ def keyboard():
     rospy.Subscriber("/joint_states", JointState, state_callback)
     pub = rospy.Publisher('/joint_trajectory_action/goal', FollowJointTrajectoryActionGoal, queue_size=10)
     # rospy.sleep(5)
+    goal_config = JointTrajectoryPoint()
+    start_config = JointTrajectoryPoint()
+
     rate = rospy.Rate(1)  # 10hz
+    print instructions
     try:
         while not rospy.is_shutdown():
-            if flag:
+            if state:
                 # Starting configuration initialization based on the joint state stored by state_callback
-                start_config = JointTrajectoryPoint()
                 start_config.positions = actual_config
                 start_config.time_from_start.secs = 0
                 start_config.time_from_start.nsecs = 0
@@ -71,15 +87,19 @@ def keyboard():
                     if c in moveBindings.keys():
                         print c
                         offsets = moveBindings[c]
-                        print "OFFSETS: ", offsets
+                        # print "OFFSETS: ", offsets
 
                         # Goal configuration initialization
-                        goal_config = JointTrajectoryPoint()
-                        goal_config_array = np.asarray(actual_config)
+                        if flag:
+                            goal_config_array = np.asarray(goal_config.positions)
+                        else:
+                            goal_config_array = np.asarray(actual_config)
+                            flag = True
+
                         for i in range(0,6):
                             goal_config_array[i] = goal_config_array[i] + offsets[i]
-                            print goal_config_array[i]
-                        print "\n"
+                            # print goal_config_array[i]
+                        # print "\n"
                         goal_config.positions = goal_config_array
                         goal_config.time_from_start.secs = 1
                         goal_config.time_from_start.nsecs = 63310604
@@ -91,7 +111,10 @@ def keyboard():
                         traj_msg.goal.trajectory.header.stamp.secs = 0
                         traj_msg.goal.trajectory.header.frame_id = 'base_link'
                         traj_msg.goal.trajectory.joint_names = ['joint_1', 'joint_2', 'joint_3', 'joint_4', 'joint_5', 'joint_6']
-                        traj_msg.goal.trajectory.points = [start_config, goal_config]
+                        # traj_msg.goal.trajectory.points = [start_config, goal_config]
+                        traj_msg.goal.trajectory.points.append(start_config)
+                        traj_msg.goal.trajectory.points.append(goal_config)
+
                         traj_msg.goal.goal_time_tolerance.secs = 0
                         traj_msg.goal.goal_time_tolerance.nsecs = 0
                         # rospy.loginfo(goal_config.positions[1])
@@ -99,7 +122,7 @@ def keyboard():
                         # Message pubblication on "/joint_trajectory_action/goal"
                         pub.publish(traj_msg)
 
-                        flag = False
+                        state = False
 
                         # client.send_goal(traj_msg)
                         # client.wait_for_result()
