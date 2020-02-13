@@ -45,7 +45,7 @@ On the Teach Pendant (robot console):
 	- SELECT > F1 > TP Programs > ROS: now the code of ROS.TP will be opened
 	- Press SELECT again
 	- Press and keep always pressed the "Deadman switch"
-	- Press RESET and wait untile the light FAULT switches off
+	- Press RESET and wait until the light FAULT switches off
 	- Press and keep always pressed SHIFT
 	- Press FWD once
 	- On the Teach Pendant you should see the following messages:
@@ -56,7 +56,7 @@ On a terminal in Ubuntu:
 
 	- cd $FANUC_WS
 	- source devel/setup.bash
-	- roslaunch fanuc_$ROBOTMODEL_moveit_config moveit_planning_execution.launch sim:=false robot_ip:=192.168.1.4
+	- roslaunch fanuc_arcmate120iBe_moveit_config moveit_planning_execution.launch sim:=false robot_ip:=192.168.1.4
 	- RViz should open with a visualization of the robot updated with the real state of the robot
 
 On the Teach Pendant (robot console):
@@ -74,7 +74,7 @@ Now you can move the manipulator; to do it you have 2 options:
 
 	2 - Publish to a topic:
 		- the topic is "/joint_trajectory_action/goal"
-		- the type of message is "control_msgs/FollowJointTrajectoryActionGoal"
+		- the type of message is "control_msgs/FollowJointTrajectoryActionGoal.msg"
 		- in the message you must initialize at least 2 configurations:
 			A - the actual configuration (joint states) of the robot (you can see it subscribing to the "/joint_states" topic)
 			B - the desired configuration to be reached by the manipulator
