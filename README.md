@@ -38,7 +38,7 @@ On the Teach Pendant (robot console):
 		- Find variable named "$MASTER_ENB" and set it to "1"
 		- Set all the joints in the the right position
 		- F1 > Master/Cal > FIXTURE POSITION MASTER
-		- **CALIBRATE**
+		- CALIBRATE
 
 On a computer with Ubuntu and ROS
 
