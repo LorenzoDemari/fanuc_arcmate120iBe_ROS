@@ -3,8 +3,8 @@ This repository contains all the files and the instructions to integrate into RO
 
 # Contents
 
-	1 - binaries: this folder contains all the ros_industrial software to be installed on the controller
-	2 - fanuc_command: a ROS package that contains a few nodes to send commands to the manipulator
+- binaries: this folder contains all the ros_industrial software to be installed on the controller
+- fanuc_command: a ROS package that contains a few nodes to send commands to the manipulator
 
 In this readme, you will find:
 
