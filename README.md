@@ -100,21 +100,21 @@ Now you can move the manipulator; to do it you have 2 options:
 
 This package contains a few ROS nodes that allows the user to perform some simple tasks in an easy way.
 
-## set_configuration
+### set_configuration
 This node allows to give an offset to each joint with a single message; it runs just once and then terminates.
 
 Usage:
 
 	$ rosrun fanuc_command set_configuration.py 0.0 0.0 0.0 0.0 0.0 -0.2
 
-## set_to_zero
+### set_to_zero
 This node makes the robot reach its default position (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 
 Usage:
 
 	$ rosrun fanuc_command set_to_zero.py
 
-## fanuc_keyboard
+### fanuc_keyboard
 This node allows the user to teleoperate the manipulator by moving one joint at a time.
 
 Usage:
