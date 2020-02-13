@@ -108,7 +108,7 @@ Usage:
 	$ rosrun fanuc_command set_configuration.py 0.0 0.0 0.0 0.0 0.0 -0.2
 
 ### set_to_zero
-This node makes the robot reach its default position (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+This node leads the robot to its default position \[0.0, 0.0, 0.0, 0.0, 0.0, 0.0\]
 
 Usage:
 
