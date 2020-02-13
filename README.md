@@ -8,9 +8,9 @@ This repository contains all the files and the instructions to integrate into RO
 
 In this readme, you will find:
 
-1 - **Configuration**: all the instructions to configure the controller and the PC
-**2 - Utilization**: all the instructions to make the manipulator move through ROS
-3 - **fanuc_command**: a description of the fanuc_command ROS package
+1. **Configuration**: all the instructions to configure the controller and the PC
+2. **Utilization**: all the instructions to make the manipulator move through ROS
+3. **fanuc_command**: a description of the fanuc_command ROS package
 
 # 1 - Configuration
 
