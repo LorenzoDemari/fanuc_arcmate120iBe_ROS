@@ -28,7 +28,7 @@ def command():
         start_config.time_from_start.secs = 0
         start_config.time_from_start.nsecs = 0
 
-        # Goal configuration initialization
+        # Goal configuration initialization: default position (all zeros)
         goal_config = JointTrajectoryPoint()
         goal_config.positions = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         goal_config.time_from_start.secs = 1

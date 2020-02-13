@@ -95,7 +95,7 @@ def keyboard():
                         else:
                             goal_config_array = np.asarray(actual_config)
                             flag = True
-
+                        # Assign to the goal configuration the old configuration + the offset depending on the key pressed by the user
                         for i in range(0,6):
                             goal_config_array[i] = goal_config_array[i] + offsets[i]
                             # print goal_config_array[i]

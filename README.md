@@ -14,7 +14,7 @@ In this readme, you will find:
 
 2. **Utilization:** all the instructions to make the manipulator move through ROS
 
-3. **fanuc_command:** a description of the fanuc_command ROS package
+3. **fanuc_command package:** a description of the fanuc_command ROS package
 
 ## 1. Configuration
 
