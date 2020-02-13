@@ -96,6 +96,8 @@ Now you can move the manipulator; to do it you have 2 options:
 ### Message Example:
 ![Prova](https://github.com/LorenzoDemari/fanuc_arcmate120iBe_ROS/blob/developing/message.png)
 
+
+
 ## 3. fanuc_command package
 
 This package contains a few ROS nodes that allows the user to perform some simple tasks in an easy way.
