@@ -110,9 +110,9 @@ Usage:
 
 Commands:
 
-	'a' JOINT_1 'd'
-	'w' JOINT_2 's'
-	'i' JOINT_3 'k'
-	'j' JOINT_4 'l'
-	'8' JOINT_5 '5'
-	'4' JOINT_6 '6'
+			'a' JOINT_1 'd'
+			'w' JOINT_2 's'
+			'i' JOINT_3 'k'
+			'j' JOINT_4 'l'
+			'8' JOINT_5 '5'
+			'4' JOINT_6 '6'
