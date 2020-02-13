@@ -22,6 +22,7 @@ On the Teach Pendant (robot console):
 	- Calibration
 		- MENUS > SYSTEM > F1 > Variables
 		- Find variable named "$MASTER_ENB" and set it to "1"
+		- Set all the joints in the the right position
 		- F1 > Master/Cal > FIXTURE POSITION MASTER
 		- CALIBRATE
 
