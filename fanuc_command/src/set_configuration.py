@@ -38,7 +38,7 @@ def command():
         # pub1 = rospy.Publisher('/joint_path_command', JointTrajectory, queue_size=10)
         rospy.Subscriber("/joint_states", JointState, state_callback)
         pub = rospy.Publisher('/joint_trajectory_action/goal', FollowJointTrajectoryActionGoal, queue_size=10)
-        rospy.sleep(5)
+        rospy.sleep(1)
 
         if flag:
             # rate = rospy.Rate(10) # 10hz

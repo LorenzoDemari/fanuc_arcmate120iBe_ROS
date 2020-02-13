@@ -73,7 +73,7 @@ def keyboard():
     goal_config = JointTrajectoryPoint()
     start_config = JointTrajectoryPoint()
 
-    rate = rospy.Rate(1)  # 10hz
+    rate = rospy.Rate(100)  # 10hz
     print instructions
     try:
         while not rospy.is_shutdown():

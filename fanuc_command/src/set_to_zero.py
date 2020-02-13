@@ -18,7 +18,7 @@ def command():
     rospy.init_node('set_to_zero', anonymous=True)
     rospy.Subscriber("/joint_states", JointState, state_callback)
     pub = rospy.Publisher('/joint_trajectory_action/goal', FollowJointTrajectoryActionGoal, queue_size=10)
-    rospy.sleep(5)
+    rospy.sleep(1)
 
     if flag:
 
