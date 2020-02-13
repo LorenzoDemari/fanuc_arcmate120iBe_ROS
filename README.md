@@ -91,4 +91,5 @@ This package contains a few ROS nodes that allows the user to perform some simpl
 This node allows to give an offset to each joint with a single message; it runs just once and then terminates.
 
 Usage:
-	- $ rosrun fanuc_command set_configuration.py 0.0 0.0 0.0 0.0 0.0 -0.2
+
+	$ rosrun fanuc_command set_configuration.py 0.0 0.0 0.0 0.0 0.0 -0.2
