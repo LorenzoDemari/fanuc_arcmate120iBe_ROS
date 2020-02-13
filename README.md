@@ -1,6 +1,16 @@
 # fanuc_arcmate120iBe_ROS
-This repository contains all the files and the instructions to integrate the FANUC ARC Mate 120iBe provided with the R-J3iB Mate controller (2003) within ROS.
-In this readme, you will find all the instructions to configure the controller and the PC (software to be installed and configuration to be done) and to make the manipulator move through ROS.
+This repository contains all the files and the instructions to integrate into ROS the FANUC ARC Mate 120iBe maniulatore, provided with the R-J3iB Mate controller (2003).
+
+# Contents
+
+	1 - binaries: this folder contains all the ros_industrial software to be installed on the controller
+	2 - fanuc_command: a ROS package that contains a few nodes to send commands to the manipulator
+
+In this readme, you will find:
+
+	1 - Configuration: all the instructions to configure the controller and the PC
+	2 - Utilization: all the instructions to make the manipulator move through ROS
+	3 - fanuc_command: a description of the fanuc_command ROS package
 
 # Configuration
 
