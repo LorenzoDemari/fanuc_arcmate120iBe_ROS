@@ -93,3 +93,26 @@ This node allows to give an offset to each joint with a single message; it runs 
 Usage:
 
 	$ rosrun fanuc_command set_configuration.py 0.0 0.0 0.0 0.0 0.0 -0.2
+
+## set_to_zero
+This node makes the robot reach its default position (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+
+Usage:
+
+	$ rosrun fanuc_command set_to_zero.py
+
+## fanuc_keyboard
+This node allows the user to teleoperate the manipulator by moving one joint at a time.
+
+Usage:
+
+	$ rosrun fanuc_command fanuc_keyboard.py
+
+Commands:
+
+	'a' JOINT_1 'd'
+	'w' JOINT_2 's'
+	'i' JOINT_3 'k'
+	'j' JOINT_4 'l'
+	'8' JOINT_5 '5'
+	'4' JOINT_6 '6'
