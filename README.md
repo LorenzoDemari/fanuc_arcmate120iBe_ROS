@@ -8,11 +8,11 @@ This repository contains all the files and the instructions to integrate into RO
 
 In this readme, you will find:
 
-	1 - Configuration: all the instructions to configure the controller and the PC
-	2 - Utilization: all the instructions to make the manipulator move through ROS
-	3 - fanuc_command: a description of the fanuc_command ROS package
+	1 - **Configuration**: all the instructions to configure the controller and the PC
+	**2 - Utilization**: all the instructions to make the manipulator move through ROS
+	3 - **fanuc_command**: a description of the fanuc_command ROS package
 
-# Configuration
+# 1 - Configuration
 
 On the Teach Pendant (robot console):
 
@@ -48,7 +48,7 @@ On a computer with Ubuntu and ROS
 		- moveit
 		- fanuc_arcmate120iBe_support
 
-# Utilization
+# 2 - Utilization
 
 On the Teach Pendant (robot console):
 
@@ -93,7 +93,7 @@ Now you can move the manipulator; to do it you have 2 options:
 ## Message Example:
 ![Prova](https://github.com/LorenzoDemari/fanuc_arcmate120iBe_ROS/blob/developing/message.png)
 
-# fanuc_command package
+# 3 - fanuc_command package
 
 This package contains a few ROS nodes that allows the user to perform some simple tasks in an easy way.
 
