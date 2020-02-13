@@ -10,7 +10,7 @@ In this readme, you will find:
 
 	1 - **Configuration**: all the instructions to configure the controller and the PC
 	**2 - Utilization**: all the instructions to make the manipulator move through ROS
-	3 - __fanuc_command__: a description of the fanuc_command ROS package
+	__fanuc_command__: a description of the fanuc_command ROS package
 
 # 1 - Configuration
 
