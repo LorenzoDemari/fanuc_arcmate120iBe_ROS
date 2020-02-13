@@ -106,6 +106,7 @@ This node allows to give an offset to each joint with a single message; it runs 
 Usage:
 
 	$ rosrun fanuc_command set_configuration.py 0.0 0.0 0.0 0.0 0.0 -0.2
+Running the node with these arguments, the robot will move the 6th joint of -0.2 radiants.
 
 ### set_to_zero
 This node leads the robot to its default position \[0.0, 0.0, 0.0, 0.0, 0.0, 0.0\]
