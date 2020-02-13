@@ -1,5 +1,5 @@
 # fanuc_arcmate120iBe_ROS
-This repository contains all the files and the instructions to integrate into ROS the FANUC ARC Mate 120iBe manipulator, provided with the R-J3iB Mate controller (2003).
+This repository contains all the files and the instructions to integrate into ROS the **FANUC ARC Mate 120iBe** manipulator, provided with the **R-J3iB** Mate controller (2003).
 
 ## Contents
 This repository has the following contents:
@@ -18,7 +18,7 @@ In this readme, you will find:
 
 ## 1. Configuration
 
-On the Teach Pendant (robot console):
+On the **Teach Pendant** (robot console):
 
 	- TCP/IP configuration
 		- MENUS > SETUP > F1 > Next > Host Comm > TCP/IP
@@ -40,7 +40,7 @@ On the Teach Pendant (robot console):
 		- F1 > Master/Cal > FIXTURE POSITION MASTER
 		- CALIBRATE
 
-On a computer with Ubuntu and ROS
+On a computer with **Ubuntu** and **ROS**
 
 	- TCP/IP configuration
 		- Set a static IP
@@ -54,7 +54,7 @@ On a computer with Ubuntu and ROS
 
 ## 2. Utilization
 
-On the Teach Pendant (robot console):
+On the **Teach Pendant** (robot console):
 
 	- SELECT > F1 > TP Programs > ROS: now the code of ROS.TP will be opened
 	- Press SELECT again
@@ -66,14 +66,14 @@ On the Teach Pendant (robot console):
 		- RREL Waiting for ROS traj relay
 		- RSTA Waiting for ROS state prox
 
-On a terminal in Ubuntu:
+On a terminal in **Ubuntu**:
 
 	- cd $FANUC_WS
 	- source devel/setup.bash
 	- roslaunch fanuc_arcmate120iBe_moveit_config moveit_planning_execution.launch sim:=false robot_ip:=192.168.1.4
 	- RViz should open with a visualization of the robot updated with the real state of the robot
 
-On the Teach Pendant (robot console):
+On the **Teach Pendant** (robot console):
 
 	- You should see the following messages:
 		- RREL Connected
