@@ -80,7 +80,7 @@ Now you can move the manipulator; to do it you have 2 options:
 			B - the desired configuration to be reached by the manipulator
 		- looking below, you can see an example of a message published on the "/joint_trajectory_action/goal" in order to move just the 5th joint
 
-# Message Example:
+## Message Example:
 ![Prova](https://github.com/LorenzoDemari/fanuc_arcmate120iBe_ROS/blob/developing/message.png)
 
 # fanuc_command package
