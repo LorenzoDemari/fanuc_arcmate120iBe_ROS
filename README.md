@@ -20,9 +20,9 @@ In this readme, you will find:
 
 ## 1. Requirements
 
-- **fanuc_driver**
-- **industrial_robot_client**
-- **MoveIt!**
+- **fanuc_driver:** https://github.com/ros-industrial/fanuc/tree/kinetic
+- **industrial_robot_client:** https://github.com/ros-industrial/industrial_core
+- **MoveIt!:** https://github.com/ros-planning/moveit/tree/melodic-devel
 
 ## 2. Configuration
 
