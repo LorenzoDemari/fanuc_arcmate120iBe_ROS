@@ -1,11 +1,19 @@
 #!/usr/bin/env python
 import numpy as np
 import rospy
-import sys
+import  sys
+from trajectory_msgs.msg import JointTrajectory
 from trajectory_msgs.msg import JointTrajectoryPoint
-from control_msgs.msg import FollowJointTrajectoryActionGoal
+from control_msgs.msg import FollowJointTrajectoryAction
+from control_msgs.msg import FollowJointTrajectoryActionGoal, FollowJointTrajectoryGoal
 from sensor_msgs.msg import JointState
+from std_msgs.msg import Float64, Duration
+from control_msgs.msg import JointTrajectoryAction, JointTrajectoryActionGoal
 
+import actionlib
+import actionlib_msgs.msg
+import industrial_msgs.srv._CmdJointTrajectory
+from industrial_msgs.msg import _RobotMode
 
 def state_callback(state_msg):
     global actual_config
@@ -16,34 +24,46 @@ def state_callback(state_msg):
 
 def command():
     if len(sys.argv) != 7:
-        print "Usage: ", sys.argv[0], "<angle_joint_1> <angle_joint_2> <angle_joint_3> <angle_joint_4> <angle_joint_5> <angle_joint_6>"
+        print "Usage: ", sys.argv[0], "<offset_joint_1> <offset_joint_2> <offset_joint_3> <offset_joint_4> <offset_joint_5> <offset_joint_6>"
         return -1
     else:
         global flag
         global actual_config
         flag = False
-        rospy.init_node('configuration_commander', anonymous=True)
+        rospy.init_node('joint_commander', anonymous=True)
+        # client = actionlib.SimpleActionClient('/joint_trajectory_action', FollowJointTrajectoryAction)
+        # client.wait_for_server()
         # rospy.loginfo("SERVER")
 
+        # pub1 = rospy.Publisher('/joint_path_command', JointTrajectory, queue_size=10)
         rospy.Subscriber("/joint_states", JointState, state_callback)
         pub = rospy.Publisher('/joint_trajectory_action/goal', FollowJointTrajectoryActionGoal, queue_size=10)
         rospy.sleep(1)
 
         if flag:
+            # rate = rospy.Rate(10) # 10hz
+            # while not rospy.is_shutdown():
 
             # Starting configuration initialization based on the joint state stored by state_callback
             start_config = JointTrajectoryPoint()
+            # start_config.positions = [-0.24934397637844086, 1.1815193891525269, -0.9878455400466919, 0.0027158225420862436, 0.7455053925514221, -0.7225106954574585]
             start_config.positions = actual_config
+            # start_config.velocities = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+            # start_config.accelerations = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
             start_config.time_from_start.secs = 0
             start_config.time_from_start.nsecs = 0
 
             # Goal configuration initialization
             goal_config = JointTrajectoryPoint()
-            goal_config_array = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+            # goal_config.positions = [-0.24934397637844086, 1.1815193891525269, -0.9878455400466919, 0.0027158225420862436, 0.5455053925514221, -0.7225106954574585]
+            goal_config_array = np.asarray(actual_config)
             for i in range(0,6):
-                goal_config_array[i] = float(sys.argv[i+1])
+                goal_config_array[i] = goal_config_array[i] + float(sys.argv[i+1])
                 print goal_config_array[i]
+            # goal_config_array[4] = goal_config_array[4] + 0.5
             goal_config.positions = goal_config_array
+            # goal_config.velocities = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+            # goal_config.accelerations = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
             goal_config.time_from_start.secs = 1
             goal_config.time_from_start.nsecs = 63310604
 
@@ -64,6 +84,12 @@ def command():
 
             flag = False
 
+            # client.send_goal(traj_msg)
+            # client.wait_for_result()
+            # return client.get_result()
+
+            # rospy.spin()
+                # rate.sleep()
         else:
             pass
 
@@ -73,3 +99,4 @@ if __name__ == '__main__':
         command()
     except rospy.ROSInterruptException:
         pass
+

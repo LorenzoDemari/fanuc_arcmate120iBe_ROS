@@ -40,7 +40,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/lorenzo/FANUC/src/fanuc_arcmate120iBe_ROS/fanuc_command/venv"
+VIRTUAL_ENV="/home/lorenzo/fanuc_ws/src/fanuc_arcmate120iBe_ROS/fanuc_command/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
