@@ -112,6 +112,7 @@ This package contains a few ROS nodes that allows the user to perform some simpl
 This node leads the manipulator to the configuration given as arguments to the node.
 
 Usage:
+
 	$ rosrun fanuc_command set_configuration.py 0.0 0.36 0.43 3.14 0.07 3.14
 
 ### set_joint_offset
