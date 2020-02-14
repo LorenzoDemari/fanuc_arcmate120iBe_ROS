@@ -109,11 +109,17 @@ Now you can move the manipulator; to do it you have 2 options:
 This package contains a few ROS nodes that allows the user to perform some simple tasks in an easy way.
 
 ### set_configuration
+This node leads the manipulator to the configuration given as arguments to the node.
+
+Usage:
+	$ rosrun fanuc_command set_configuration.py 0.0 0.36 0.43 3.14 0.07 3.14
+
+### set_joint_offset
 This node allows to give an offset to each joint with a single message; it runs just once and then terminates.
 
 Usage:
 
-	$ rosrun fanuc_command set_configuration.py 0.0 0.0 0.0 0.0 0.0 -0.2
+	$ rosrun fanuc_command set_joint_offset.py 0.0 0.0 0.0 0.0 0.0 -0.2
 Running the node with these arguments, the robot will move the 6th joint of -0.2 radiants.
 
 ### set_to_zero
