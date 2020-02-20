@@ -17,7 +17,7 @@
   <!-- Allowed joint-value tolerance for validation that trajectory's first point matches current robot state -->
   <param name="trajectory_execution/allowed_start_tolerance" value="0.1"/> <!-- default 0.01 -->
   <!-- "Multiplicative factor for execution speed -->
-  <param name="trajectory_execution/execution_velocity_scaling" value="1"/>    <!--default 1 --> 
+  <param name="trajectory_execution/execution_velocity_scaling" value="2"/>    <!--default 1 --> 
   
 
   <!-- Load the robot specific controller manager; this sets the moveit_controller_manager ROS parameter -->

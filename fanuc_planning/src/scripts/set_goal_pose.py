@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+import math
 
 import sys
 import copy
@@ -12,6 +13,18 @@ from moveit_commander.conversions import pose_to_list
 from geometry_msgs.msg import Pose
 from sensor_msgs.msg import JointState
 from trajectory_msgs.msg import JointTrajectoryPoint
+
+def normalization(pose):
+    norm = math.sqrt(pose.orientation.x ** 2 + pose.orientation.y ** 2 + pose.orientation.z ** 2 + pose.orientation.w ** 2)
+    if norm != 1:
+        pose.orientation.x = pose.orientation.x / norm
+        pose.orientation.y = pose.orientation.y / norm
+        pose.orientation.z = pose.orientation.z / norm
+        pose.orientation.w = pose.orientation.w / norm
+    else:
+        pass
+
+    return pose
 
 
 # Initializing the node representing the robot
@@ -46,13 +59,23 @@ origin.orientation.w = 0.5
 ##===== PLANNING TO A GOAL POSE =====##
 
 goal_pose = geometry_msgs.msg.Pose()
-goal_pose.orientation.x = 0.7
-goal_pose.orientation.y = 0.7
-goal_pose.orientation.z = 0
-goal_pose.orientation.w = 0
-goal_pose.position.x = 0.9
-goal_pose.position.y = -0.3
-goal_pose.position.z = 0.9
+goal_pose.orientation.x = 0.705
+goal_pose.orientation.y = 0
+goal_pose.orientation.z = 0.707
+goal_pose.orientation.w = -0
+goal_pose.position.x = 1.184
+goal_pose.position.y = -0
+goal_pose.position.z = 1.395
+
+# norm = math.sqrt(goal_pose.orientation.x**2 + goal_pose.orientation.y**2 + goal_pose.orientation.z**2 + goal_pose.orientation.w**2)
+# if norm != 1:
+#     goal_pose.orientation.x = goal_pose.orientation.x / norm
+#     goal_pose.orientation.y = goal_pose.orientation.y / norm
+#     goal_pose.orientation.z = goal_pose.orientation.z / norm
+#     goal_pose.orientation.w = goal_pose.orientation.w / norm
+# else:
+#     pass
+# goal_pose = normalization(goal_pose)
 
 move_group.set_pose_target(goal_pose)
 print(move_group.get_joint_value_target())
@@ -67,9 +90,9 @@ move_group.stop()
 
 # It is always good to clear your targets after planning with poses.
 # Note: there is no equivalent function for clear_joint_value_targets()
-move_group.clear_pose_targets()
-move_group.set_named_target("origin")
-plan_0 = move_group.go(wait=True)
+# move_group.clear_pose_targets()
+# move_group.set_named_target("origin")
+# plan_0 = move_group.go(wait=True)
 
 moveit_commander.roscpp_shutdown()
 

@@ -4,8 +4,12 @@ This repository contains all the files and the instructions to integrate into RO
 ## Contents
 This repository has the following contents:
 
-- **binaries:** this folder contains all the ros_industrial software to be installed on the controller
-- **fanuc_command:** a ROS package that contains a few nodes to send commands to the manipulator
+- **binaries:** this folder contains all the ros_industrial software to be installed on the controller (.tp and .pc)
+	- **binaries_source:** the source codes for the binaries
+- **fanuc_arcmate120ibe_moveit_config:** a ROS package for the integration in MoveIt! of the robot
+- **fanuc_arcmate120ibe_support:** a ROS package that contains the URDF of the robot and other configuration files
+- **fanuc_command:** a ROS package that contains a few nodes to send commands directly to the manipulator (no planning)
+- **fanuc_planning:** a ROS package that contains a few nodes to plan and execute trajectories with the manipulator
 - **README:** the present document
 
 In this readme, you will find:
