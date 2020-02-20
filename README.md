@@ -138,6 +138,7 @@ Usage:
 This node allows the user to teleoperate the manipulator by moving one joint at a time.
 
 Usage:
+
 	$ rosrun fanuc_command fanuc_keyboard.py
 
 Commands:
