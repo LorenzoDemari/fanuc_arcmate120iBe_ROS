@@ -8,7 +8,7 @@ This repository has the following contents:
 	- **binaries_source:** the source codes for the binaries
 - **fanuc_arcmate120ibe_moveit_config:** a ROS package for the integration in MoveIt! of the robot
 - **fanuc_arcmate120ibe_support:** a ROS package that contains the URDF of the robot and other configuration files
-- **fanuc_command:** a ROS package that contains a few nodes to send commands directly to the manipulator (no planning)
+- **fanuc_command:** a ROS package that contains a few nodes to send commands to the manipulator (no planning)
 - **fanuc_planning:** a ROS package that contains a few nodes to plan and execute trajectories with the manipulator
 - **README:** the present document
 
