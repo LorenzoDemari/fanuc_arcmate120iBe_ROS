@@ -24,9 +24,10 @@ In this readme, you will find:
 
 ## 1. Requirements
 
-- **fanuc_driver:** https://github.com/ros-industrial/fanuc/tree/kinetic
 - **industrial_robot_client:** https://github.com/ros-industrial/industrial_core
 - **MoveIt!:** https://github.com/ros-planning/moveit/tree/melodic-devel
+- **fanuc_driver:** https://github.com/ros-industrial/fanuc/tree/kinetic
+- **Fanuc-ARC-Mate-120iBe:** https://github.com/oaghub/Fanuc-ARC-Mate-120iBe.git
 
 ## 2. Configuration
 
