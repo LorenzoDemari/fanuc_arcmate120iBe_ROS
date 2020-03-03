@@ -1,4 +1,0 @@
-<?xml version="1.0"?>
-<launch>
-  <param name="robot_description" textfile="$(find fanuc_arcmate120ibe_support)/urdf/fanuc_arcmate120ibe_support.urdf" />
-</launch>
