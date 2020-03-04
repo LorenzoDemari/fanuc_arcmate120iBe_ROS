@@ -35,8 +35,8 @@ joint_goal[0] = 0
 joint_goal[1] = 0
 joint_goal[2] = 0
 joint_goal[3] = 0
-joint_goal[4] = 0
-joint_goal[5] = 1
+joint_goal[4] = 0#-1.57
+joint_goal[5] = 0
 
 # The go command can be called with joint values, poses, or without any
 # parameters if you have already set the pose or joint target for the group

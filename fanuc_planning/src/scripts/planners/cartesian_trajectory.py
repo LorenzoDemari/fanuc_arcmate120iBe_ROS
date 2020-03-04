@@ -29,19 +29,8 @@ move_group = moveit_commander.MoveGroupCommander(group_name)
 # Create a `DisplayTrajectory`_ ROS publisher which is used to display trajectories in Rviz:
 display_trajectory_publisher = rospy.Publisher('/move_group/display_planned_path',moveit_msgs.msg.DisplayTrajectory,queue_size=20)
 
-origin = Pose()
-origin.position.x = 0.990
-origin.position.y = 0
-origin.position.z = 1.395
-origin.orientation.x = 0.5
-origin.orientation.y = 0.5
-origin.orientation.z = 0.5
-origin.orientation.w = 0.5
 
-##===== PLANNING TO A CARTESIAN CURRENT POSE =====##
-print "============ Printing robot pose"
-print move_group.get_current_pose().pose
-print ""
+
 
 ## You can plan a Cartesian path directly by specifying a list of waypoints
 ## for the end-effector to go through. If executing  interactively in a
@@ -54,21 +43,10 @@ scale = 1
 waypoints = [] # Can plan a Cartesian path directly by specifying a list of waypoints
 
 wpose = move_group.get_current_pose().pose
-wpose.position.z -= scale * 1  # First move up (z)
+wpose.position.x -= scale * 0.5  # First move up (z)
 waypoints.append(copy.deepcopy(wpose))
-wpose.position.x += scale * 0.5  # Second move forward/backwards in (x)
-waypoints.append(copy.deepcopy(wpose))
-wpose.position.y -= scale * 0.5  # Third move sideways (y)
-waypoints.append(copy.deepcopy(wpose))
-wpose.position.x = origin.position.x
-wpose.position.y = origin.position.y
-wpose.position.z = origin.position.z
-wpose.orientation.x = origin.orientation.x
-wpose.orientation.y = origin.orientation.y
-wpose.orientation.z = origin.orientation.z
-wpose.orientation.w = origin.orientation.w
-waypoints.append(copy.deepcopy(wpose))
-
+#wpose.position.x += scale * 0.05  # First move up (z)
+#waypoints.append(copy.deepcopy(wpose))
 
 
 # We want the Cartesian path to be interpolated at a resolution of 1 cm
