@@ -50,7 +50,7 @@ goal_pose = geometry_msgs.msg.Pose()
 
 goal_pose.position.x = 1
 goal_pose.position.y = 0
-goal_pose.position.z = 1
+goal_pose.position.z = 0.5
 goal_pose.orientation.x = 0.7071
 goal_pose.orientation.y = 0.7071
 goal_pose.orientation.z = 0

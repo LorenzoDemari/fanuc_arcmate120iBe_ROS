@@ -144,11 +144,43 @@ scene.add_box("table_2", p, (0.48, 0.63, 0.05))
 
 '''OBJECTS'''
 p.header.frame_id = robot.get_planning_frame()
+p.pose.position.x = 1.19
+p.pose.position.y = 0.265
+p.pose.position.z = 0.40
+# scene.add_box("cube1", p, (0.05, 0.05, 0.05))
+scene.add_sphere("sphere1", p, 0.025)
+# scene.remove_world_object("cube")
+
+p.header.frame_id = robot.get_planning_frame()
+p.pose.position.x = 1.19
+p.pose.position.y = -0.265
+p.pose.position.z = 0.40
+# scene.add_box("cube2", p, (0.05, 0.05, 0.05))
+scene.add_sphere("sphere2", p, 0.025)
+
+p.header.frame_id = robot.get_planning_frame()
+p.pose.position.x = 0.81
+p.pose.position.y = 0.265
+p.pose.position.z = 0.40
+# scene.add_box("cube3", p, (0.05, 0.05, 0.05))
+scene.add_sphere("sphere3", p, 0.025)
+# scene.remove_world_object("cube")
+
+p.header.frame_id = robot.get_planning_frame()
+p.pose.position.x = 0.81
+p.pose.position.y = -0.265
+p.pose.position.z = 0.40
+# scene.add_box("cube4", p, (0.05, 0.05, 0.05))
+scene.add_sphere("sphere4", p, 0.025)
+
+p.header.frame_id = robot.get_planning_frame()
 p.pose.position.x = 1
-p.pose.position.y = -0.5
-p.pose.position.z = 0.7
-scene.add_box("cube", p, (0.1, 0.1, 0.1))
-scene.remove_world_object("cube")
+p.pose.position.y = 0
+p.pose.position.z = 0.40
+# scene.add_box("cube5", p, (0.05, 0.05, 0.05))
+scene.add_sphere("sphere5", p, 0.025)
+# scene.remove_world_object("cube")
+
 
 #joint_goal = move_group.get_current_joint_values()
 #joint_goal[0] = 0

@@ -11,6 +11,113 @@ from std_msgs.msg import String
 from moveit_commander.conversions import pose_to_list
 from geometry_msgs.msg import Pose
 
+
+def pick_place(rx, ry, rz, w, x, y, z):
+    global plan_0
+    ''' STAGE I : Move the EE near the object of interest'''
+    pose_target = geometry_msgs.msg.Pose()
+    # Coordinates and orientaion of the desired pose
+    pose_target.orientation.x = rx
+    pose_target.orientation.y = ry
+    pose_target.orientation.z = rz
+    pose_target.orientation.w = w
+    pose_target.position.x = x
+    pose_target.position.y = y
+    pose_target.position.z = z
+    # Build such Pose as a target for aour planning group
+    move_group.set_pose_target(pose_target)
+    # Plan the trajectory
+    plan_0 = move_group.go(wait=True)
+    print "============ Fanuc 120iBe: OVER THE OBJECT"
+    #
+    #
+    #
+    #
+    #
+    # ''' STAGE II : Move the EE just over the object of interest'''
+    pose_target.position.z = 0.5  # This is in relation to joint_6 NOT END-EFFECTOR!!
+    # Build such Pose as a target for aour planning group
+    move_group.set_pose_target(pose_target)
+    # Plan the trajectory
+    plan_0 = move_group.go(wait=True)
+    print "============ Fanuc 120iBe: APPROACHING OBJECT"
+    #
+    #
+    # rospy.sleep(2) # Slowing down the execution
+    #
+    #
+    # ''' STAGE III : Grasp the object of interest'''
+    # '''
+    # touch_links = robot.get_link_names(group=grasping_group)
+    # scene.attach_box(eef_link, box_name, touch_links=touch_links)
+    # print "============ Fanuc 120iBe: GRASPING OBJECT"
+    # '''
+    #
+    # rospy.sleep(2) # Slowing down the execution
+    #
+    #
+    # ''' STAGE IV : Lift the object of interest '''
+    pose_target.position.z = 1  # This is in relation to joint_6 NOT END-EFFECTOR!!
+    # Build such Pose as a target for aour planning group
+    move_group.set_pose_target(pose_target)
+    # Plan the trajectory
+    plan_0 = move_group.go(wait=True)
+    print "============ Fanuc 120iBe: LIFTING OBJECT"
+    #
+    #
+    #
+    #
+    #
+    ''' STAGE V : Move the object of interest over its desired location '''
+    pose_target.position.y = 0.5  # This is in relation to joint_6 NOT END-EFFECTOR!!
+    # Build such Pose as a target for aour planning group
+    move_group.set_pose_target(pose_target)
+    # Plan the trajectory
+    plan_0 = move_group.go(wait=True)
+    print "============ Fanuc 120iBe: MOVING OBJECT"
+    #
+    #
+    #
+    #
+    #
+    ''' STAGE VI : Approach the object of interest closer to its new location'''
+    pose_target.position.z = 0.5  # This is in relation to joint_6 NOT END-EFFECTOR!!
+    # Build such Pose as a target for aour planning group
+    move_group.set_pose_target(pose_target)
+    # Plan the trajectory
+    plan_0 = move_group.go(wait=True)
+    print "============ Fanuc 120iBe: APPROACHING OBJECT"
+    #
+    #
+    # rospy.sleep(2) # Slowing down the execution
+    #
+    #
+    # ''' STAGE VII :  Release the object'''
+    # print "============ Fanuc 120iBe: RELEASING OBJECT"
+    # scene.remove_attached_object(eef_link, box_name)
+    #
+    #
+    # rospy.sleep(2) # Slowing down the execution
+    #
+    #
+    # ''' STAGE VII : Leave the object'''
+    # '''
+    pose_target.position.z = 1  # This is in relation to joint_6 NOT END-EFFECTOR!!
+    # Build such Pose as a target for aour planning group
+    move_group.set_pose_target(pose_target)
+    # Plan the trajectory
+    plan_0 = move_group.go(wait=True)
+    print "============ Fanuc 120iBe: LEAVING OBJECT"
+    #
+    #
+    #
+    #
+    #
+    #
+
+
+
+
 ''' Initializing the node representing the robot '''
 moveit_commander.roscpp_initialize(sys.argv)
 
@@ -50,108 +157,22 @@ print "============ Fanuc 120iBe: READY"
 #print('\x1b[6;31;43m' + '============ Fanuc 120iBe:' + '\x1b[0m' + '\x1b[6;30;43m'+ " " + 'READY' + " " +  '\x1b[0m' )
 move_group.stop()
 
+rx = -0.7071
+ry = -0.7071
+rz = 0
+rw = 0
+# sphere 1
+pick_place(rx, ry, rz, rw, 1.19, -0.265, 1.3)
+# sphere 2
+pick_place(rx, ry, rz, rw, 1.19, 0.265, 1.3)
+# sphere 3
+pick_place(rx, ry, rz, rw, 0.81, -0.265, 1.3)
+# sphere 4
+pick_place(rx, ry, rz, rw, 0.81, 0.265, 1.3)
+# sphere 5
+pick_place(rx, ry, rz, rw, 1, 0, 1.3)
 
 
-''' STAGE I : Move the EE near the object of interest'''
-pose_target = geometry_msgs.msg.Pose()
-# Coordinates and orientaion of the desired pose
-pose_target.orientation.x = 0.7071
-pose_target.orientation.y = 0.7071
-pose_target.orientation.z = 0
-pose_target.orientation.w = 0
-pose_target.position.x = 1
-pose_target.position.y = -0.3
-pose_target.position.z = 1.3
-# Build such Pose as a target for aour planning group
-move_group.set_pose_target(pose_target)
-# Plan the trajectory
-plan_0 = move_group.go(wait=True)
-print "============ Fanuc 120iBe: OVER THE OBJECT"
-#
-#
-#
-#
-#
-#''' STAGE II : Move the EE just over the object of interest'''
-pose_target.position.z = 0.88 # This is in relation to joint_6 NOT END-EFFECTOR!!
-# Build such Pose as a target for aour planning group
-move_group.set_pose_target(pose_target)
-# Plan the trajectory
-plan_0 = move_group.go(wait=True)
-print "============ Fanuc 120iBe: APPROACHING OBJECT"
-#
-#
-#rospy.sleep(2) # Slowing down the execution
-#
-#
-#''' STAGE III : Grasp the object of interest'''
-#'''
-#touch_links = robot.get_link_names(group=grasping_group)
-#scene.attach_box(eef_link, box_name, touch_links=touch_links)
-#print "============ Fanuc 120iBe: GRASPING OBJECT"
-#'''
-#
-#rospy.sleep(2) # Slowing down the execution
-#
-#
-#''' STAGE IV : Lift the object of interest '''
-pose_target.position.z = 1 # This is in relation to joint_6 NOT END-EFFECTOR!!
-# Build such Pose as a target for aour planning group
-move_group.set_pose_target(pose_target)
-# Plan the trajectory
-plan_0 = move_group.go(wait=True)
-print "============ Fanuc 120iBe: LIFTING OBJECT"
-#
-#
-#
-#
-#
-''' STAGE V : Move the object of interest over its desired location '''
-pose_target.position.y = 0.5 # This is in relation to joint_6 NOT END-EFFECTOR!!
-# Build such Pose as a target for aour planning group
-move_group.set_pose_target(pose_target)
-# Plan the trajectory
-plan_0 = move_group.go(wait=True)
-print "============ Fanuc 120iBe: MOVING OBJECT"
-#
-#
-#
-#
-#
-''' STAGE VI : Approach the object of interest closer to its new location'''
-pose_target.position.z = 0.88 # This is in relation to joint_6 NOT END-EFFECTOR!!
-# Build such Pose as a target for aour planning group
-move_group.set_pose_target(pose_target)
-# Plan the trajectory
-plan_0 = move_group.go(wait=True)
-print "============ Fanuc 120iBe: APPROACHING OBJECT"
-#
-#
-#rospy.sleep(2) # Slowing down the execution
-#
-#
-#''' STAGE VII :  Release the object'''
-#print "============ Fanuc 120iBe: RELEASING OBJECT"
-#scene.remove_attached_object(eef_link, box_name)
-#
-#
-#rospy.sleep(2) # Slowing down the execution
-#
-#
-#''' STAGE VII : Leave the object'''
-#'''
-pose_target.position.z = 1 # This is in relation to joint_6 NOT END-EFFECTOR!!
-# Build such Pose as a target for aour planning group
-move_group.set_pose_target(pose_target)
-# Plan the trajectory
-plan_0 = move_group.go(wait=True)
-print "============ Fanuc 120iBe: LEAVING OBJECT"
-#
-#
-#
-#
-#
-#
 ''' STAGE IX : go back to innitial position'''
 move_group.set_named_target("origin") # Known position defined throught the MoveIt setup assistant
 plan_0 = move_group.go(wait=True)
