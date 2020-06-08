@@ -1,0 +1,19 @@
+<launch>
+
+	<!-- <include file="$(find fanuc_arcmate120ibe_moveit_config)/launch/moveit_planning_execution.launch" 
+		<arg name="sim" value="false"/>
+		<arg name="robot_ip" value="192.168.1.4"/>
+	<include/> -->
+
+
+	<node name="arduinoROS" pkg="rosserial_python" type="serial_node.py" respawn="false" output="screen"     
+		<param name="port"              type="string"               value="/dev/ttyACM0"/>
+    		<param name="baud"              type="int"                  value="9600"/>
+	<node/>
+
+	<node name="csv_printer" pkg="fanuc_planning" type="printer.py" respawn="false" output="screen" />
+	<node name="pick_and_place" pkg="fanuc_planning" type="pick_and_place.py" respawn="false" output="screen" />
+	
+	<node name="scene.py" pkg="fanuc_planning" type="scene.py" respawn="false" output="screen" />
+
+</launch>

@@ -10,16 +10,35 @@ from math import pi
 from std_msgs.msg import String
 from moveit_commander.conversions import pose_to_list
 from geometry_msgs.msg import Pose
+from std_srvs.srv import SetBool
+from std_msgs.msg import Float64
 
 
-def pick_place(rx, ry, rz, w, x, y, z):
+def range_callback(msg):
+    global distance
+    distance = msg.data
+
+
+def gripper_control_client(x):
+    rospy.wait_for_service('gripper_control')
+    try:
+        gripper_control = rospy.ServiceProxy('gripper_control', SetBool)
+        resp1 = gripper_control(x)
+        print("\n%s", resp1.message)
+        # return resp1
+    except rospy.ServiceException as e:
+        print("Service call failed: %s" % e)
+
+
+def pick_place(ox, oy, oz, w, x, y, z):
+    global distance
     global plan_0
     ''' STAGE I : Move the EE near the object of interest'''
     pose_target = geometry_msgs.msg.Pose()
     # Coordinates and orientaion of the desired pose
-    pose_target.orientation.x = rx
-    pose_target.orientation.y = ry
-    pose_target.orientation.z = rz
+    pose_target.orientation.x = ox
+    pose_target.orientation.y = oy
+    pose_target.orientation.z = oz
     pose_target.orientation.w = w
     pose_target.position.x = x
     pose_target.position.y = y
@@ -34,13 +53,25 @@ def pick_place(rx, ry, rz, w, x, y, z):
     #
     #
     #
-    # ''' STAGE II : Move the EE just over the object of interest'''
-    pose_target.position.z = 0.5  # This is in relation to joint_6 NOT END-EFFECTOR!!
-    # Build such Pose as a target for aour planning group
-    move_group.set_pose_target(pose_target)
-    # Plan the trajectory
-    plan_0 = move_group.go(wait=True)
+    # # ''' STAGE II : Move the EE just over the object of interest'''
+    # pose_target.position.z = 0.7  # This is in relation to joint_6 NOT END-EFFECTOR!!
+    # # Build such Pose as a target for aour planning group
+    # move_group.set_pose_target(pose_target)
+    # # Plan the trajectory
+    # plan_0 = move_group.go(wait=True)
+    # print "============ Fanuc 120iBe: APPROACHING OBJECT"
+    # gripper_control_client(1)
+
     print "============ Fanuc 120iBe: APPROACHING OBJECT"
+    while (distance > 6):
+        pose_target.position.z = pose_target.position.z - 0.05
+        # Build such Pose as a target for aour planning group
+        move_group.set_pose_target(pose_target)
+        # Plan the trajectory
+        plan_0 = move_group.go(wait=True)
+        print "============ Distance: %f", distance
+
+    gripper_control_client(1)
     #
     #
     # rospy.sleep(2) # Slowing down the execution
@@ -86,7 +117,8 @@ def pick_place(rx, ry, rz, w, x, y, z):
     move_group.set_pose_target(pose_target)
     # Plan the trajectory
     plan_0 = move_group.go(wait=True)
-    print "============ Fanuc 120iBe: APPROACHING OBJECT"
+    print "============ Fanuc 120iBe: APPROACHING GOAL"
+    gripper_control_client(0)
     #
     #
     # rospy.sleep(2) # Slowing down the execution
@@ -122,6 +154,9 @@ def pick_place(rx, ry, rz, w, x, y, z):
 moveit_commander.roscpp_initialize(sys.argv)
 
 rospy.init_node('fanuc_move_group_pick_and_place', anonymous=True)
+
+distance = 100.0
+rospy.Subscriber('range_sensor_data', Float64, range_callback)
 
 # Provides information such as the robot's kinematic model and the robot's current joint states
 robot = moveit_commander.RobotCommander()
@@ -165,15 +200,15 @@ rw = 0
 pick_place(rx, ry, rz, rw, 1.19, -0.265, 1.3)
 # sphere 2
 pick_place(rx, ry, rz, rw, 1.19, 0.265, 1.3)
-# sphere 3
+# # sphere 3
 pick_place(rx, ry, rz, rw, 0.81, -0.265, 1.3)
-# sphere 4
+# # sphere 4
 pick_place(rx, ry, rz, rw, 0.81, 0.265, 1.3)
-# sphere 5
+# # sphere 5
 pick_place(rx, ry, rz, rw, 1, 0, 1.3)
 
 
-''' STAGE IX : go back to innitial position'''
+''' STAGE IX : go back to initial position'''
 move_group.set_named_target("origin") # Known position defined throught the MoveIt setup assistant
 plan_0 = move_group.go(wait=True)
 print "============ Fanuc 120iBe: POSITION RESET"
