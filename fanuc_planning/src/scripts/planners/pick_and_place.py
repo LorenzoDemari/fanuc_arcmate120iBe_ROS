@@ -53,7 +53,7 @@ def pick_place(ox, oy, oz, w, x, y, z):
     #
     #
     #
-    # # ''' STAGE II : Move the EE just over the object of interest'''
+    ''' STAGE II : Move the EE just over the object of interest'''
     # pose_target.position.z = 0.7  # This is in relation to joint_6 NOT END-EFFECTOR!!
     # # Build such Pose as a target for aour planning group
     # move_group.set_pose_target(pose_target)
@@ -71,6 +71,8 @@ def pick_place(ox, oy, oz, w, x, y, z):
         plan_0 = move_group.go(wait=True)
         print "============ Distance: %f", distance
 
+    # move_group.stop()
+    rospy.sleep(1)
     gripper_control_client(1)
     #
     #
@@ -87,7 +89,7 @@ def pick_place(ox, oy, oz, w, x, y, z):
     # rospy.sleep(2) # Slowing down the execution
     #
     #
-    # ''' STAGE IV : Lift the object of interest '''
+    ''' STAGE IV : Lift the object of interest '''
     pose_target.position.z = 1  # This is in relation to joint_6 NOT END-EFFECTOR!!
     # Build such Pose as a target for aour planning group
     move_group.set_pose_target(pose_target)

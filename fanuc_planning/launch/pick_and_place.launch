@@ -12,8 +12,7 @@
 	<node/>
 
 	<node name="csv_printer" pkg="fanuc_planning" type="printer.py" respawn="false" output="screen" />
-	<node name="pick_and_place" pkg="fanuc_planning" type="pick_and_place.py" respawn="false" output="screen" />
-	
 	<node name="scene.py" pkg="fanuc_planning" type="scene.py" respawn="false" output="screen" />
+	<node name="pick_and_place" pkg="fanuc_planning" type="pick_and_place.py" respawn="false" output="screen" />
 
 </launch>
